@@ -5,10 +5,14 @@ function M.new(name, attributes)
     name = { name, "string" },
     attributes = { attributes, "table" },
   })
+  attributes.get_actual = attributes.get_actual or function() end
+  attributes.get_expected = attributes.get_expected or function(...)
+    return ...
+  end
   return {
     name = name,
     get_result = function(args)
-      local expected = args[#args]
+      local expected = attributes.get_expected(args[#args])
       local actual = attributes.get_actual(unpack(args, 1, #args - 1))
       return {
         name = name,
