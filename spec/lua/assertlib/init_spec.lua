@@ -15,13 +15,13 @@ describe("assertlib.list()", function()
   describe("returns asseter", function()
     it("that has name", function()
       local got = assertlib.list()
-      local asserter = get_asserter(got, "length")
-      assert.equals("length", asserter.name)
+      local asserter = get_asserter(got, "list_length")
+      assert.equals("list_length", asserter.name)
     end)
 
     it("that can make result", function()
       local got = assertlib.list()
-      local asserter = get_asserter(got, "length")
+      local asserter = get_asserter(got, "list_length")
 
       local result = asserter.get_result({ { 1, 2 }, 3 })
       assert.is_same(2, result.actual)
@@ -33,7 +33,7 @@ describe("assertlib.list()", function()
 
     it("that can make messages", function()
       local got = assertlib.list()
-      local asserter = get_asserter(got, "length")
+      local asserter = get_asserter(got, "list_length")
 
       local result = asserter.get_result({ { 1, 2 }, 3 })
 
