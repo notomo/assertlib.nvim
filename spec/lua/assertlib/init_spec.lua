@@ -43,5 +43,25 @@ describe("assertlib.list()", function()
       local negative_message = asserter.negative_message(result)
       assert.equals("string", type(negative_message))
     end)
+
+    it("that does not include duplicated names", function()
+      local asserters = assertlib.list()
+      local names = vim.tbl_map(function(asserter)
+        return asserter.name
+      end, asserters)
+      table.sort(names, function(a, b)
+        return a > b
+      end)
+
+      local duplicated = vim.tbl_filter(function(name)
+        local count = #vim.tbl_filter(function(e)
+          return e == name
+        end, names)
+        return count > 1
+      end, names)
+      duplicated = vim.fn.uniq(duplicated)
+
+      assert.equals(0, #duplicated, "duplicated names: " .. vim.inspect(duplicated))
+    end)
   end)
 end)
