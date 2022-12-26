@@ -1,4 +1,4 @@
-local plugin_name = vim.split((...):gsub("%.", "/"), "/", true)[1]
+local plugin_name = vim.split((...):gsub("%.", "/"), "/", { plain = true })[1]
 local helper = require("vusted.helper")
 
 function helper.before_each() end
