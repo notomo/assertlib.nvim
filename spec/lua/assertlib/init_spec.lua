@@ -6,9 +6,12 @@ describe("assertlib.list()", function()
   after_each(helper.after_each)
 
   local get_asserter = function(asserters, name)
-    local filtered = vim.tbl_filter(function(asserter)
-      return asserter.name == name
-    end, asserters)
+    local filtered = vim
+      .iter(asserters)
+      :filter(function(asserter)
+        return asserter.name == name
+      end)
+      :totable()
     return filtered[1]
   end
 
@@ -53,12 +56,18 @@ describe("assertlib.list()", function()
         return a > b
       end)
 
-      local duplicated = vim.tbl_filter(function(name)
-        local count = #vim.tbl_filter(function(e)
-          return e == name
-        end, names)
-        return count > 1
-      end, names)
+      local duplicated = vim
+        .iter(names)
+        :filter(function(name)
+          local count = #vim
+            .iter(names)
+            :filter(function(e)
+              return e == name
+            end)
+            :totable()
+          return count > 1
+        end)
+        :totable()
       duplicated = vim.fn.uniq(duplicated)
 
       assert.equals(0, #duplicated, "duplicated names: " .. vim.inspect(duplicated))
