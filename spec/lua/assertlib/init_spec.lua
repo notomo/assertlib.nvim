@@ -49,9 +49,12 @@ describe("assertlib.list()", function()
 
     it("that does not include duplicated names", function()
       local asserters = assertlib.list()
-      local names = vim.tbl_map(function(asserter)
-        return asserter.name
-      end, asserters)
+      local names = vim
+        .iter(asserters)
+        :map(function(asserter)
+          return asserter.name
+        end)
+        :totable()
       table.sort(names, function(a, b)
         return a > b
       end)

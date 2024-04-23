@@ -2,13 +2,16 @@ local M = {}
 
 function M.list()
   local module_paths = vim.api.nvim_get_runtime_file("lua/assertlib/function/*.lua", true)
-  local module_names = vim.tbl_map(function(path)
-    path = path:gsub("\\", "/")
-    local splitted = vim.split(path, "/", { plain = true })
-    local file_name = splitted[#splitted]
-    local name = file_name:sub(1, #file_name - 4)
-    return name
-  end, module_paths)
+  local module_names = vim
+    .iter(module_paths)
+    :map(function(path)
+      path = path:gsub("\\", "/")
+      local splitted = vim.split(path, "/", { plain = true })
+      local file_name = splitted[#splitted]
+      local name = file_name:sub(1, #file_name - 4)
+      return name
+    end)
+    :totable()
 
   local from = require("assertlib.asserter").from
 
