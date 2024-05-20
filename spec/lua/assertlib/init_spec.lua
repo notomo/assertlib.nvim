@@ -71,6 +71,7 @@ describe("assertlib.list()", function()
           return count > 1
         end)
         :totable()
+      ---@diagnostic disable-next-line: cast-local-type
       duplicated = vim.fn.uniq(duplicated)
 
       assert.equals(0, #duplicated, "duplicated names: " .. vim.inspect(duplicated))
