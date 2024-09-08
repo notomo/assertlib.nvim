@@ -43,4 +43,10 @@ function M.register(register_fn)
   end
 end
 
+function M.typed(assert)
+  ---@cast assert +AssertlibAssert
+  ---@cast assert -string
+  return assert
+end
+
 return M
