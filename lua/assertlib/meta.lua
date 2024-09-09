@@ -33,6 +33,7 @@ function M.current_line(want) end
 function M.cursor_row(want) end
 function M.cursor_column(want) end
 function M.cursor_word(want) end
+function M.cursor_position(want) end
 function M.exists_message(want) end
 function M.exists_pattern(want) end
 function M.filetype(want) end
