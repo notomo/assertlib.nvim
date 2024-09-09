@@ -35,7 +35,7 @@ function M.cursor_column(want) end
 function M.cursor_word(want) end
 function M.cursor_position(want) end
 function M.exists_message(want) end
-function M.exists_pattern(want) end
+function M.exists_pattern(want, bufnr) end
 function M.filetype(want) end
 function M.list_length(got, length) end
 function M.mode(want) end
