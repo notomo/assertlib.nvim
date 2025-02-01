@@ -3,7 +3,7 @@ local M = {}
 --- @param name string
 --- @param attributes table
 function M.new(name, attributes)
-  attributes.get_actual = attributes.get_actual or function() end
+  attributes.get_actual = attributes.get_actual or function(...) end
   attributes.get_actual_args = attributes.get_actual_args
     or function(args)
       return { unpack(args, 1, #args - 1) }
