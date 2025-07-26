@@ -1,7 +1,7 @@
 local M = {}
 
 function M.window_count()
-  return vim.fn.tabpagewinnr(vim.fn.tabpagenr(), "$")
+  return #vim.api.nvim_tabpage_list_wins(0)
 end
 
 function M.window_id()
