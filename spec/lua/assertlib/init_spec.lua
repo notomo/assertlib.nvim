@@ -1,6 +1,8 @@
+local ntf = require("ntf")
+local describe, it, before_each, after_each = ntf.describe, ntf.it, ntf.before_each, ntf.after_each
 local helper = require("assertlib.test.helper")
-local assertlib = helper.require("assertlib")
-local assert = require("assertlib").typed(assert)
+local assertlib = require("assertlib")
+local assert = require("assertlib").typed(ntf.assert)
 
 describe("assertlib.list()", function()
   before_each(helper.before_each)
